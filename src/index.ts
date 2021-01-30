@@ -1,7 +1,7 @@
 import Maze from "./Maze";
 import Player from "./Player";
 
-console.log("Cheat: Hold = to phase through walls");
+console.log("Cheat: Press = to phase through walls");
 
 const CELL_WIDTH = 40;
 const LINE_WIDTH = 1;

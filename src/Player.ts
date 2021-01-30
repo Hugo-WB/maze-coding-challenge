@@ -106,6 +106,10 @@ export default class Player {
             );
             OFFSET.x = offset.x;
             OFFSET.y = offset.y;
+            this.phasing = true;
+            setTimeout(() => {
+              this.phasing = false
+            }, 1000);
             break;
           }
         }
@@ -116,9 +120,9 @@ export default class Player {
       this.phasing = true;
     }
 
-    if (!keys["="]) {
-      this.phasing = false;
-    }
+    // if (!keys["="]) {
+    //   this.phasing = false;
+    // }
   }
   draw() {
     ctx.fillRect(this.x, this.y, this.width, this.width);
