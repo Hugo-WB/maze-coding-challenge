@@ -6,7 +6,7 @@
   </a>
 </p>
 
-> HTML Based maze game, part of a coding challenge for a front-end position at a start-up
+> HTML Based maze game, part of a coding challenge for a front-end position
 
 ### 🏠 [Homepage](https://hugo-wb.github.io/maze-coding-challenge/)
 
@@ -14,6 +14,10 @@
 
 Made using Typescript with HTML canvas, bundled using webpack.
 Maze generated using Eller's Maze algorithm.
+
+<br/>
+
+I recommend running on Chrome, as for some reason Firefox is a lot slower when it comes to canvas in HTML.
 
 ## Install
 
