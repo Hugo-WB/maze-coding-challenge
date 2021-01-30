@@ -20,6 +20,7 @@ export default class Player {
   width = CELL_WIDTH / 2;
   height = CELL_WIDTH / 2;
   getCurrentCoordinates(): { x: number; y: number } {
+    // returns the current maze coordinates of the player
     return {
       x: Math.ceil(
         (-OFFSET.x - LINE_WIDTH) / (LINE_WIDTH + CELL_WIDTH) +
@@ -31,6 +32,7 @@ export default class Player {
     };
   }
   checkForColour(colour: string) {
+    // checks around the robot for the input colour
     let directions = [
       ctx.getImageData(this.x + CELL_WIDTH / 2, this.y - (SPEED + 1), 1, 1),
       ctx.getImageData(
@@ -93,12 +95,14 @@ export default class Player {
       let coords = this.getCurrentCoordinates();
       if (maze instanceof Maze) {
         for (let i = 0; i < maze.phazors.length; i++) {
+          // iterate through the phazors and find the one that we are next to
           if (
             Math.abs(maze.phazors[i][0] - coords.x) +
               Math.abs(maze.phazors[i][1] - coords.y) <
             4
           ) {
             maze.phazors.splice(i, 1);
+            // Teleporting to a random location:
             // get screen offset for a random set of coordinates
             let offset = coordinatesToOffset(
               Math.round(Math.random() * (entities[1].width - 1)),
@@ -106,16 +110,18 @@ export default class Player {
             );
             OFFSET.x = offset.x;
             OFFSET.y = offset.y;
+            // allow phasing for 1.5 seconds
             this.phasing = true;
             setTimeout(() => {
               this.phasing = false
-            }, 1000);
+            }, 1500);
             break;
           }
         }
       }
     }
 
+    // 👀👀👀👀
     if (keys["="]) {
       this.phasing = true;
     }
@@ -125,6 +131,7 @@ export default class Player {
     // }
   }
   draw() {
+    // draw the box in the middle of the screen
     ctx.fillRect(this.x, this.y, this.width, this.width);
   }
 }

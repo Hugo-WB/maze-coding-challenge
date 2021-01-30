@@ -13,14 +13,17 @@ export default class Maze {
   phazors: [number, number][] = [];
 
   constructor(width?: number, height?: number) {
+    // default maze height/width is the minimum to fill the screen
     this.height =
       height ?? Math.floor(canvas.height / (CELL_WIDTH + LINE_WIDTH));
     this.width = width ?? Math.floor(canvas.width / (CELL_WIDTH + LINE_WIDTH));
     this.maze = generateEllers(this.width, this.height);
+    // the goal is a random point
     this.end = {
       x: Math.round(Math.random() * (this.width - 1)),
       y: Math.round(Math.random() * (this.height - 1)),
     };
+    // randomly generate the blue squares/phazors
     for (let i = 0; i < Math.round((this.height * this.width) / 200); i++) {
       this.phazors.push([
         Math.round(Math.random() * (this.width - 1)),
@@ -31,10 +34,12 @@ export default class Maze {
 
   update() {}
   draw() {
+    // current location of the pen, used when drawing lines
     let pen = {
       x: LINE_WIDTH + OFFSET.x,
       y: LINE_WIDTH + OFFSET.y,
     };
+    // draw the goal
     ctx.fillStyle = "red";
     ctx.fillRect(
       (this.end.x + 1) * LINE_WIDTH + this.end.x * CELL_WIDTH + OFFSET.x,
@@ -42,6 +47,7 @@ export default class Maze {
       CELL_WIDTH,
       CELL_WIDTH
     );
+    // draw the phazors
     ctx.fillStyle = "blue";
     this.phazors.forEach((phazor) => {
       ctx.fillRect(
@@ -53,6 +59,7 @@ export default class Maze {
     });
     ctx.fillStyle = "black";
     ctx.beginPath();
+    // viewbox: used so that the maze only renders what is shown, otherwise it slows down the game a lot
     let viewBox: { [key: string]: [number, number] } = {
       x: [
         Math.max(0, Math.round(0.9 * (-OFFSET.x / CELL_WIDTH))),
@@ -81,6 +88,7 @@ export default class Maze {
         pen.x = (x + 1) * LINE_WIDTH + x * CELL_WIDTH + OFFSET.x;
         ctx.moveTo(pen.x, pen.y);
         pen.x += CELL_WIDTH;
+        // check for walls of the cell, and if there are walls, draw them
         if (this.maze[y][x].walls[0]) {
           ctx.lineTo(pen.x, pen.y);
         } else {
