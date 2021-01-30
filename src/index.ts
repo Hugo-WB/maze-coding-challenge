@@ -11,9 +11,9 @@ let OFFSET = {
   y: 0,
 };
 
-let SPEED: number = 8;
-if (navigator.userAgent.indexOf("Chrome") > -1) {
-  SPEED = 4;
+let SPEED: number = 4;
+if (navigator.userAgent.indexOf("Firefox") > -1) {
+  SPEED = 8;
 }
 
 let playing: boolean = true;
