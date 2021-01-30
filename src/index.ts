@@ -8,7 +8,7 @@ let OFFSET = {
   y: 0,
 };
 
-let SPEED: number = 5;
+let SPEED: number = 8;
 if (navigator.userAgent.indexOf("Chrome") > -1) {
   SPEED = 4;
 }
@@ -51,7 +51,7 @@ let checkForWall = (x: number, y: number, width: number, height: number) => {
 let coordinatesToOffset = (x: number, y: number): { x: number; y: number } => {
   return {
     x: canvas.width / 2 - (x * (LINE_WIDTH + CELL_WIDTH) + LINE_WIDTH),
-    y: canvas.height / 2 - (y * (LINE_WIDTH + CELL_WIDTH) + LINE_WIDTH),
+    y: canvas.height / 2 - (y * (LINE_WIDTH + CELL_WIDTH) + LINE_WIDTH) + CELL_WIDTH/3,
   };
 };
 
@@ -305,8 +305,8 @@ menu.addEventListener("click", () => {
   entities = [
     new Player(),
     new Maze(
-      Math.round(entities[1].width * 10),
-      Math.round(entities[1].height * 10)
+      Math.round(entities[1].width * 1.2),
+      Math.round(entities[1].height * 1.2)
     ),
   ];
   menu.style.visibility = "hidden";
