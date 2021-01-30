@@ -1,6 +1,8 @@
 import Maze from "./Maze";
 import Player from "./Player";
 
+console.log("Cheat: Hold = to phase through walls");
+
 const CELL_WIDTH = 40;
 const LINE_WIDTH = 1;
 
@@ -39,6 +41,8 @@ let keys: { [key: string]: boolean } = {};
 
 let entities: (Player | Maze)[] = [];
 
+// helper functions:
+
 let checkForWall = (x: number, y: number, width: number, height: number) => {
   let pixels = ctx.getImageData(x, y, width, height).data;
   for (let i = 0; i < pixels.length; i++) {
@@ -59,7 +63,7 @@ let coordinatesToOffset = (x: number, y: number): { x: number; y: number } => {
   };
 };
 
-
+// main loop
 const animate = () => {
   entities.forEach((entity) => {
     entity.update();

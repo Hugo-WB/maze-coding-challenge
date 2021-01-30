@@ -112,11 +112,11 @@ export default class Player {
       }
     }
 
-    if (keys[" "]) {
+    if (keys["="]) {
       this.phasing = true;
     }
 
-    if (!keys[" "]) {
+    if (!keys["="]) {
       this.phasing = false;
     }
   }
